@@ -1,13 +1,37 @@
 ##Ionic templates for MobileFirst Platform Foundation
 
+### Install
+
+- Download the template
+
+```javascript
+$ git clone https://github.com/csantanapr/mfp-ionic-templates.git
+````
+
+- Install bower cli
+
+```javascript
+$ npm install -g bower
+````
+
+- Install Ionic Library for each template
+
+```javascript
+$ cd tabs
+$ bower install
+````
+
 ### How to use
 
-- Download the MobileFirst Platform Foundation (MFP) CLI
-- Create MFP Project using CLI
+- Download and Install the [MobileFirst Platform Foundation (MFP) CLI](https://developer.ibm.com/mobilefirstplatform/install/#clui)
+
+
+- Create and Start MFP Project using CLI
 
 ```javascript
 $ mfp create mfproject
 $ cd mfproject
+$ mfp start
 ````
 
 - Create Hybrid App with environments for iOS and Android
@@ -22,7 +46,7 @@ $ mfpdev add environment android
 
 ```javascript
 $ rm -r apps/coolApp/common
-$ cp -r mfp-ionic-templates/coolApp/common coolApp/
+$ cp -r mfp-ionic-templates/tabs/common coolApp/
 ```
 
 - Build, Deploy and Preview App
@@ -32,8 +56,5 @@ $ cd apps/coolApp/
 $ mfp bd && mfp preview
 ```
 
-### Licenses
-MIT
-
-### Other Licenses
-Ionic and AngularJS
+### License
+Apache 2.0
