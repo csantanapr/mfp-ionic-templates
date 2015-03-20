@@ -56,5 +56,8 @@ $ cd apps/coolApp/
 $ mfp bd && mfp preview
 ```
 
+### Demo
+![Picture of screenshot of Mobile Browser Simulator running Ionic App](mbs_preview.png "Mobile Browser Simulator")
+
 ### License
 Apache 2.0
