@@ -1,8 +1,8 @@
-##Ionic templates for MobileFirst Platform Foundation
+##Ionic templates for MobileFirst Platform Foundation (MFP)
 
 ### Install
 
-- Download the template
+- Download the Ionic templates for MFP
 
 ```javascript
 $ git clone https://github.com/csantanapr/mfp-ionic-templates.git
@@ -38,8 +38,8 @@ $ mfp start
 
 ```javascript
 $ mfp add hybrid coolApp
-$ mfpdev add environment iphone
-$ mfpdev add environment android
+$ mfp add environment iphone
+$ mfp add environment android
 ````
 
 - Replace contents of common with one of the templates
