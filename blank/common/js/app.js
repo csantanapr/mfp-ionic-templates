@@ -16,4 +16,12 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+}).directive('appReady', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      console.log("Done rendering body");
+      WL.App.hideSplashScreen();
+    }
+  };
+});

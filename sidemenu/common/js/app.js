@@ -68,4 +68,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
+})
+.directive('appReady', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      console.log("Done rendering body");
+      WL.App.hideSplashScreen();
+    }
+  };
 });

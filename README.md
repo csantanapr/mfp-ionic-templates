@@ -56,6 +56,10 @@ $ cd apps/coolApp/
 $ mfp bd && mfp preview
 ```
 
+### Customizations
+- By default the templates use [ngCloak](https://docs.angularjs.org/api/ng/directive/ngCloak) directive, this will take care of waiting until all children of body element are parsed and then unhide the app.
+- If you would like to show the splash screen and hide it when the angular is done rendering all children from the body element, then change the property autoHideSplash to false in common/js/initOptions.js. The directive appReady in app.js will take care of calling WL.App.hideSplashScreen()
+
 ### Demo
 ![Picture of screenshot of Mobile Browser Simulator running Ionic App](mbs_preview.png "Mobile Browser Simulator")
 

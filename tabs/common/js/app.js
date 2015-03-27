@@ -18,7 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    
+
   });
 })
 
@@ -81,4 +81,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
+})
+.directive('appReady', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      console.log("Done rendering body");
+      WL.App.hideSplashScreen();
+    }
+  };
 });
