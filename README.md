@@ -46,7 +46,7 @@ $ mfp add environment android
 
 ```javascript
 $ rm -r apps/coolApp/common
-$ cp -r mfp-ionic-templates/tabs/common coolApp/
+$ cp -r ~/mfp-ionic-templates/tabs/common apps/coolApp/
 ```
 
 - Build, Deploy and Preview App
