@@ -13,55 +13,63 @@ $ git clone https://github.com/csantanapr/mfp-ionic-templates.git
 ```javascript
 $ npm install -g bower
 ````
-
-- Install Ionic Library for each template
-
-```javascript
-$ cd tabs
-$ bower install
-````
-
 ### How to use
 
-- Download and Install the [MobileFirst Platform Foundation (MFP) CLI](https://developer.ibm.com/mobilefirstplatform/install/#clui)
+- Download and Install the [MobileFirst Platform Foundation (MFP) CLI](https://developer.ibm.com/mobilefirstplatform/install/#clui) 7.1 (August 2015)
 
-
-- Create and Start MFP Project using CLI
+- Create a Cordova App using one of the templates
 
 ```javascript
-$ mfp create mfproject
-$ cd mfproject
+$ mfp cordova create myapp -p ios mfp-ionic-templates/blank
+$ cd myapp
+````
+
+- Install Ionic Library and NPM dependencies
+
+```javascript
+$ bower install
+$ npm install
+````
+
+- Use mfp cli to add additional platforms and plugins
+
+```javascript
+$ mfp cordova platform add 
+$ mfp cordova platform add android
+$ mfp cordova plugin add 
+$ mfp cordova plugin add cordova-plugin-mfp-jsonstore
+$ mfp cordova plugin add cordova-plugin-mfp-push
+
+````
+
+- Use ionic cli for other cordova actions
+
+```javascript
+$ ionic prepare
+$ ionic build
+$ ionic serve
+$ ionic emulate
+$ ionic run
+```
+
+- To Preview using MobileFirst Browser Simulator you need a local development Server with a backend
+
+```javascript
+$ mfp create backend
+$ cd backend
 $ mfp start
-````
-
-- Create Hybrid App with environments for iOS and Android
-
-```javascript
-$ mfp add hybrid coolApp
-$ mfp add environment iphone
-$ mfp add environment android
-````
-
-- Replace contents of common with one of the templates
-
-```javascript
-$ rm -r apps/coolApp/common
-$ cp -r ~/mfp-ionic-templates/tabs/common apps/coolApp/
+$ cd ../myapp/
+$ mfp cordova preview
 ```
 
-- Build, Deploy and Preview App
+- Push the app to a remote server like the one in Bluemix Containers (Docker)
 
 ```javascript
-$ cd apps/coolApp/
-$ mfp bd && mfp preview
+$ mfp server add
+$ mfp push <servername>
+$ mfp console <servername>
 ```
 
-### Customizations
-- By default the templates use [ngCloak](https://docs.angularjs.org/api/ng/directive/ngCloak) directive, this will take care of waiting until all children of body element are parsed and then unhide the app.
-- If you would like to show the splash screen and hide it when the angular is done rendering all children from the body element, then change the property autoHideSplash to false in common/js/initOptions.js. The directive appReady in app.js will take care of calling WL.App.hideSplashScreen()
-
-### Demo
-![Picture of screenshot of Mobile Browser Simulator running Ionic App](mbs_preview.png "Mobile Browser Simulator")
 
 ### License
 Apache 2.0
