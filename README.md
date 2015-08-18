@@ -20,7 +20,7 @@ $ npm install -g bower
 - Create a Cordova App using one of the templates
 
 ```javascript
-$ mfp cordova create myapp -p ios -t mfp-ionic-templates/blank
+$ mfp cordova create myapp -p ios,android -t mfp-ionic-templates/blank
 $ cd myapp
 ````
 
