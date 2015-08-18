@@ -77,6 +77,8 @@ $ mfp push <servername>
 $ mfp console <servername>
 ```
 
+### Demo
+![Picture of screenshot of Mobile Browser Simulator running Ionic App](mbs_preview.png "Mobile Browser Simulator")
 
 ### License
 Apache 2.0
