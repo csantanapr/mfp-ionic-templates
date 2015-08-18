@@ -62,6 +62,7 @@ $ ionic build
 - To Preview using MobileFirst Browser Simulator you need a local development Server with a backend
 
 ```javascript
+$ cd ../
 $ mfp create backend
 $ cd backend
 $ mfp start
