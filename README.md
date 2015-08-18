@@ -42,14 +42,21 @@ $ mfp cordova plugin add cordova-plugin-mfp-push
 
 ````
 
+- Use mfp cli to emulate and run
+
+```javascript
+$ mfp cordova emulate
+$ mfp cordova emulate -p ios
+$ mfp cordova run
+$ mfp cordova run -p android
+
+````
+
 - Use ionic cli for other cordova actions
 
 ```javascript
 $ ionic prepare
 $ ionic build
-$ ionic serve
-$ ionic emulate
-$ ionic run
 ```
 
 - To Preview using MobileFirst Browser Simulator you need a local development Server with a backend
