@@ -14,8 +14,10 @@ $ git clone https://github.com/csantanapr/mfp-ionic-templates.git
 - Create a Cordova App using one of the templates (blank, tabs, sidemenu) and run npm install
 - MFP cordova create can take more arguments, must specify at least one platform ios or android (mfp help cordova create for more info)
 
+*You need to use full qualified path for the -t or --template argument*
+
 ```javascript
-$ mfp cordova create myapp -p ios,android -t mfp-ionic-templates/blank
+$ mfp cordova create myapp -p ios,android -t /Users/username/Desktop/mfp-ionic-templates/blank
 $ cd myapp
 $ npm install
 ````
