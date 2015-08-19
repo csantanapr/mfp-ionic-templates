@@ -7,29 +7,26 @@
 ```javascript
 $ git clone https://github.com/csantanapr/mfp-ionic-templates.git
 ````
-
-- Install bower cli
-
-```javascript
-$ npm install -g bower
-````
-### How to use
-
 - Download and Install the [MobileFirst Platform Foundation (MFP) CLI](https://developer.ibm.com/mobilefirstplatform/install/#clui) 7.1 (August 2015)
 
-- Create a Cordova App using one of the templates
+### How to use
+
+- Create a Cordova App using one of the templates (blank, tabs, sidemenu) and run npm install
+- MFP cordova create can take more arguments, must specify at least one platform ios or android (mfp help cordova create for more info)
 
 ```javascript
 $ mfp cordova create myapp -p ios,android -t mfp-ionic-templates/blank
 $ cd myapp
-````
-
-- Install Ionic Library and NPM dependencies
-
-```javascript
-$ bower install
 $ npm install
 ````
+
+or in one single command (Linux, Mac)
+
+```javascript
+$ APP=myapp; mfp cordova create ${APP} -p ios,android -t mfp-ionic-templates/blank && cd ${APP} && npm install
+````
+
+### How to use the MFP CLI
 
 - Use mfp cli to add additional platforms and plugins
 

@@ -17,9 +17,6 @@ try {
   return;
 }
 
-var cmd = process.platform === 'win32' ? 'cordova.cmd' : 'cordova';
-// var script = path.resolve(__dirname, '../../node_modules/cordova/bin', cmd);
-
 packageJSON.cordovaPlugins = packageJSON.cordovaPlugins || [];
 packageJSON.cordovaPlugins.forEach(function (plugin) {
   exec('mfp cordova plugin add ' + plugin, function (error, stdout, stderr) {
