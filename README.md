@@ -49,14 +49,18 @@ $ mfp cordova run -p android
 
 ````
 
-- Use ionic cli for other cordova actions
+- Use ionic cli for other cordova actions *
 
 ```javascript
+$ ionic serve
+$ ionic serve --lab --livereload
 $ ionic prepare
 $ ionic build
 ```
 
-- To Preview using MobileFirst Browser Simulator you need a local development Server with a backend
+*Note: --livereload for ionic emulate and ionic run don't work with MFP plugin (hoping this works in some time in the future :-) )
+
+- To Preview using MobileFirst Browser Simulator (Cordova Emulation) or Simple Browser you need a local development Server with a backend running
 
 ```javascript
 $ cd ../

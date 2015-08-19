@@ -107,7 +107,7 @@ function wlCommonInit(){
 
 function mfpMagicPreviewSetup(){
   //nothing to see here :-), just some magic to make ionic work with mfp preview, similar to ionic serve --lab
-  if(WL.StaticAppProps.ENVIRONMENT === 'preview'){
+  if(typeof WL !== 'undefined' && WL.StaticAppProps && WL.StaticAppProps.ENVIRONMENT === 'preview'){
     //running mfp preview (MBS or browser)
     if(WL.StaticAppProps.PREVIEW_ENVIRONMENT === 'android'){
       document.body.classList.add('platform-android');
@@ -118,3 +118,12 @@ function mfpMagicPreviewSetup(){
     }
 	} 
 }
+
+// Useful for ionic serve when MFP Client SDK is not present and wlCommonInit doesn't get called automatically
+var serveTimeout = 1500;
+window.setTimeout(function(){
+  if(typeof WL === 'undefined'){
+      console.log('MFP Client SDK timeout, running Web App');
+      angular.bootstrap(document.body, ['starter']);
+  }
+}, serveTimeout);
