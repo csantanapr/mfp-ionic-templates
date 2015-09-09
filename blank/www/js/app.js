@@ -83,8 +83,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-}).factory('MFPClientPromise',function(){
-  return MFPClientDefer.promise;
+}).factory('MFPClientPromise', function($q){
+  /* Setup a Promise to allow code to run in other places anytime after MFP CLient SDK is ready
+     Example: MFPClientPromise.then(function(){alert('mfp is ready, go ahead and use WL.* APIs')});
+  */
+  var defer = $q.defer();
+  window.wlCommonInit = defer.resolve;
+  defer.promise.then(function wlCommonInit(){
+    // Common initialization code goes here or use the angular service MFPClientPromise
+    console.log('MobileFirst Client SDK Initilized');
+    mfpMagicPreviewSetup();
+  });
+  return defer.promise;
 });
 
 var Messages = {
@@ -94,34 +104,19 @@ var Messages = {
 };
 
 var wlInitOptions = {
-    // Options to initialize with the WL.Client object.
-    // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
+  // Options to initialize with the WL.Client object.
+  // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
 };
 
-/* Setup a Promise to allow code to run in other places anytime after MFP CLient SDK is ready
-  Example: MFPClientPromise.then(function(){alert('mfp is ready, go ahead and use WL.* APIs')});
-*/
-var MFPClientDefer = angular.injector(['ng']).get('$q').defer();
-var wlCommonInit = MFPClientDefer.resolve;
-// wlCommonInit is called automatically after MFP framework initialization by WL.Client.init(wlInitOptions). It resolves the MFPClientPromise service
-MFPClientDefer.promise.then(function wlCommonInit(){
-  // Common initialization code goes here or use the service MFPClientPromise
-  console.log('MobileFirst Client SDK Initilized');
-});
-
-
-
 function mfpMagicPreviewSetup(){
+  var platform;
   //nothing to see here :-), just some magic to make ionic work with mfp preview, similar to ionic serve --lab
-  if(typeof WL !== 'undefined' && WL.StaticAppProps && WL.StaticAppProps.ENVIRONMENT === 'preview'){
+  if(WL.StaticAppProps.ENVIRONMENT === 'preview'){
     //running mfp preview (MBS or browser)
-    if(WL.StaticAppProps.PREVIEW_ENVIRONMENT === 'android'){
-      document.body.classList.add('platform-android');
-      ionic.Platform.setPlatform("android");
-    } else { //then ios
-      document.body.classList.add('platform-ios');
-      ionic.Platform.setPlatform("ios");
+    platform = WL.StaticAppProps.PREVIEW_ENVIRONMENT === 'android' ? 'android' : 'ios';
+    if(location.href.indexOf('?ionicplatform='+platform) < 0){
+      location.replace(location.pathname+'?ionicplatform='+platform);
     }
-	} 
+  } 
 }
 
