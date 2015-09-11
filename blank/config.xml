@@ -34,7 +34,11 @@
 	   	<splash src="res/screen/android/screen-ldpi-portrait.png" density="ldpi" />
 	   	<splash src="res/screen/android/screen-mdpi-portrait.png" density="mdpi" />
 	   	<splash src="res/screen/android/screen-xhdpi-portrait.png" density="xhdpi" />
-	   	<update src="res/screen/android/splash.9.png" target="res/drawable/splash.9.png" />
+	    <update src="res/screen/android/splash-hdpi.9.png" target="res/drawable-hdpi/splash.9.png" />
+      <update src="res/screen/android/splash-ldpi.9.png" target="res/drawable-ldpi/splash.9.png" />
+      <update src="res/screen/android/splash-mdpi.9.png" target="res/drawable-mdpi/splash.9.png" />
+      <update src="res/screen/android/splash-xhdpi.9.png" target="res/drawable-xhdpi/splash.9.png" />
+      <update src="res/screen/android/splash-xxhdpi.9.png" target="res/drawable-xxhdpi/splash.9.png" />
     	<preference name="loginDisplay" value="embedded" />
     	<preference name="wlNativeVersion" value="1839145035 " />
     </platform>
@@ -55,7 +59,7 @@
 	    <icon src="res/icon/ios/icon-small.png" width="29" height="29" />
 	    <icon src="res/icon/ios/icon-small@2x.png" width="58" height="58" />
 	    <icon src="res/icon/ios/icon-small@3x.png" width="87" height="87" />
-      	<splash src="res/screen/ios/Default~iphone.png" width="320" height="480" />
+      <splash src="res/screen/ios/Default~iphone.png" width="320" height="480" />
     	<splash src="res/screen/ios/Default@2x~iphone.png" width="640" height="960" />
     	<splash src="res/screen/ios/Default-Portrait~ipad.png" width="768" height="1024" />
     	<splash src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048" />

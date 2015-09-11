@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, MFPClientPromise) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +19,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    MFPClientPromise.then(function(){WL.Logger.ctx({pkg: 'io.ionic'}).debug('mfp and ionic are ready, safe to use WL.* APIs');});
   });
 })
 
@@ -70,48 +71,42 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
+  
+}).factory('MFPClientPromise', function($q){
+  /* Setup a Promise to allow code to run in other places anytime after MFP CLient SDK is ready
+     Example: MFPClientPromise.then(function(){alert('mfp is ready, go ahead and use WL.* APIs')});
+  */
+  return window.MFPClientDefer.promise;
 });
 
-var Messages = {
+window.Messages = {
   // Add here your messages for the default language.
   // Generate a similar file with a language suffix containing the translated messages.
   // key1 : message1,
 };
 
-var wlInitOptions = {
-    // Options to initialize with the WL.Client object.
-    // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
+window.wlInitOptions = {
+  // Options to initialize with the WL.Client object.
+  // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
 };
 
-// Called automatically after MFP framework initialization by WL.Client.init(wlInitOptions).
-function wlCommonInit(){
-	// Common initialization code goes here
+window.MFPClientDefer = angular.injector(['ng']).get('$q').defer();;
+window.wlCommonInit = window.MFPClientDefer.resolve;
+window.MFPClientDefer.promise.then(function wlCommonInit(){
+  // Common initialization code goes here or use the angular service MFPClientPromise
+  
   console.log('MobileFirst Client SDK Initilized');
-  angular.element(document).ready(function() {
-    mfpMagicPreviewSetup();
-    angular.bootstrap(document.body, ['starter']);
-  });
-}
+  mfpMagicPreviewSetup();
+ });
 
 function mfpMagicPreviewSetup(){
+  var platform;
   //nothing to see here :-), just some magic to make ionic work with mfp preview, similar to ionic serve --lab
-  if(typeof WL !== 'undefined' && WL.StaticAppProps && WL.StaticAppProps.ENVIRONMENT === 'preview'){
+  if(WL.StaticAppProps.ENVIRONMENT === 'preview'){
     //running mfp preview (MBS or browser)
-    if(WL.StaticAppProps.PREVIEW_ENVIRONMENT === 'android'){
-      document.body.classList.add('platform-android');
-      ionic.Platform.setPlatform("android");
-    } else { //then ios
-      document.body.classList.add('platform-ios');
-      ionic.Platform.setPlatform("ios");
+    platform = WL.StaticAppProps.PREVIEW_ENVIRONMENT === 'android' ? 'android' : 'ios';
+    if(location.href.indexOf('?ionicplatform='+platform) < 0){
+      location.replace(location.pathname+'?ionicplatform='+platform);
     }
-	} 
+  } 
 }
-
-// Useful for ionic serve when MFP Client SDK is not present and wlCommonInit doesn't get called automatically
-var serveTimeout = 1500;
-window.setTimeout(function(){
-  if(typeof WL === 'undefined'){
-      console.log('MFP Client SDK timeout, running Web App');
-      angular.bootstrap(document.body, ['starter']);
-  }
-}, serveTimeout);
