@@ -48,6 +48,7 @@ $ mfp cordova run
 $ mfp cordova run -p android
 
 ````
+Ignore if the emulate or run command prints something starting with "Error:" and ending with "console.log", It's not a real error just info from ios-sim into stderr
 
 - Use ionic cli for other cordova actions *
 
